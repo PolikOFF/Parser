@@ -1,4 +1,5 @@
 from classes_api import HeadHunter, SuperJob
+from classes_file import JsonAppender
 
 
 def user_interaction():
@@ -17,8 +18,11 @@ def user_interaction():
     if choice == '1':
         print('Выбран HeadHunter')
         word = input('''Введите название вакансии:\n''')
-        print('Загрузка вакансий с HeadHunter.')
-        hh = HeadHunter().get_vacancies(word)
+        word = word.lower()
+        print('Загрузка вакансий с HeadHunter...')
+        hh_vacancies = HeadHunter().get_vacancies(word)
+        hh_dicts = HeadHunter().structuring_vacancies(hh_vacancies)
+        JsonAppender().add_vacancy(word, hh_dicts)
     elif choice == '2':
         print('Выбран SuperJob')
         word = input('''Введите название вакансии:\n''')

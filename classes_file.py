@@ -3,9 +3,10 @@ import json
 
 
 class JobVacancyAppender(ABC):
+    """Абстрактный класс для работы со списками вакансий"""
 
     @abstractmethod
-    def add_vacancy(self, vacancy):
+    def add_vacancy(self, vacancy_name, vacancy):
         pass
 
     @abstractmethod
@@ -18,11 +19,15 @@ class JobVacancyAppender(ABC):
 
 
 class JsonAppender(JobVacancyAppender):
-
-    def add_vacancy(self, vacancy):
-        vacancy = vacancy.lower()
-        with open(f'{vacancy}', 'w') as file:
-            file.write(json.dumps(vacancy))
+    """Класс для использования данных с json'ом"""
+    def add_vacancy(self, vacancy_name, vacancy):
+        """
+        Метод сохранения информации в json файл.
+        При отсутствии - файл создается заново,
+        при наличии - перезаписывается.
+        """
+        with open(f'{vacancy_name}.json', 'w') as file:
+            json.dump(vacancy, file, ensure_ascii=False, indent=1)
 
     def load_vacancy(self, value):
         value = value.lower()
