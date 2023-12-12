@@ -26,13 +26,25 @@ class JsonAppender(JobVacancyAppender):
         При отсутствии - файл создается заново,
         при наличии - перезаписывается.
         """
-        with open(f'{vacancy_name}.json', 'w') as file:
+        with open(f'user_requests/{vacancy_name}.json', 'w') as file:
             json.dump(vacancy, file, ensure_ascii=False, indent=1)
 
     def load_vacancy(self, value):
         value = value.lower()
         with open(f'{value}', 'r') as file:
             pass
+
+    def delete_vacancy(self, value):
+        pass
+
+
+class CSVAppender(JobVacancyAppender):
+
+    def add_vacancy(self, vacancy_name, vacancy):
+        pass
+
+    def load_vacancy(self, value):
+        pass
 
     def delete_vacancy(self, value):
         pass
