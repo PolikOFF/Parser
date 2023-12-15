@@ -9,10 +9,12 @@ class HeadHunter(ApiWork):
     """
 
     def get_vacancies(self, keyword: str):
+        all_response_vacancies = []
         """Метод для получения вакансий."""
         url = 'https://api.hh.ru/vacancies'
+        headers = {'User-Agent': '1st parser'}
         params = {'text': keyword, 'page': 0, 'per_page': 100}
-        response = requests.get(url, params=params)
+        response = requests.get(url, params=params, headers=headers)
         vacancies = response.json()
         return vacancies
 
@@ -25,8 +27,9 @@ class HeadHunter(ApiWork):
         vacancies_with_salary = []
         vacancies_dicts = []
         # Достаем нужные сведения из вакансии
-        for i in range(len(all_vacancies)):
-            if all_vacancies['items'][i]['salary'] is not None:
+        for i in range(20):
+            if (all_vacancies['items'][i]['salary'] is not None
+                    and all_vacancies['items'][i]['salary']['currency'] == 'RUR'):
                 vacancies_with_salary.append([all_vacancies['items'][i]['name'],
                                              all_vacancies['items'][i]['employer']['name'],
                                              all_vacancies['items'][i]['apply_alternate_url'],

@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 import json
 
 
-class JobVacancyAppender(ABC):
+class JobVacancyWork(ABC):
     """Абстрактный класс для работы со списками вакансий"""
 
     @abstractmethod
@@ -13,12 +13,8 @@ class JobVacancyAppender(ABC):
     def load_vacancy(self, value):
         pass
 
-    @abstractmethod
-    def delete_vacancy(self, value):
-        pass
 
-
-class JsonAppender(JobVacancyAppender):
+class JsonAppender(JobVacancyWork):
     """Класс для использования данных с json'ом"""
     def add_vacancy(self, vacancy_name, vacancy):
         """
@@ -27,24 +23,22 @@ class JsonAppender(JobVacancyAppender):
         при наличии - перезаписывается.
         """
         with open(f'user_requests/{vacancy_name}.json', 'w') as file:
-            json.dump(vacancy, file, ensure_ascii=False, indent=1)
+            json.dump(vacancy, file, ensure_ascii=False, indent=4)
 
     def load_vacancy(self, value):
+        """
+        Метод для открытия файла json
+        """
         value = value.lower()
-        with open(f'{value}', 'r') as file:
-            pass
-
-    def delete_vacancy(self, value):
-        pass
+        with open(f'{value}.json', 'r') as file:
+            a = json.load(file, indent=4)
+            print(a)
 
 
-class CSVAppender(JobVacancyAppender):
+class CSVAppender(JobVacancyWork):
 
     def add_vacancy(self, vacancy_name, vacancy):
         pass
 
     def load_vacancy(self, value):
-        pass
-
-    def delete_vacancy(self, value):
         pass

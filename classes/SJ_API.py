@@ -15,9 +15,8 @@ class SuperJob(ApiWork):
 
     def get_vacancies(self, keyword: str):
         """Метод для получения вакансий."""
-        vacancies = []
-        url = 'https://api.superjob.ru/2.0/vacancies/params'
-        params = {'text': keyword, 'page': 0, 'per_page': 99}
+        url = 'https://api.superjob.ru/2.0/vacancies/'
+        params = {'keyword': keyword, 'page': 0, 'per_page': 100}
         response = requests.get(url, headers=self.API_KEY, params=params)
         return response.json()
 

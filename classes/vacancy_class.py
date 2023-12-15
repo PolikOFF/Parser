@@ -1,6 +1,6 @@
 class VacancyWork:
     """
-    Класс для получения информации по вакансиям.
+    Класс для работы с информацией по вакансиям.
     """
     def __init__(self, vacancy_name, employer_name, url, salary_from, salary_to):
         self.vacancy_name = vacancy_name

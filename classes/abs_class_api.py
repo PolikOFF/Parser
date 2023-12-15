@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from classes_file import JsonAppender
 
 
 class ApiWork(ABC):
