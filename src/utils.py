@@ -33,6 +33,6 @@ def sorting_vac(vacancies, vacancy_name):
 Наименование работодателя: {vacancy['employer_name']}
 Ссылка на вакансию: {vacancy['url']}
 Заработная плата от {vacancy['salary_from']}, до {vacancy['salary_to']}""")
-    with open(f'user_requests/sort_{vacancy_name}.json', 'w') as f:
+    with os.path.join(f'user_requests/sort_{vacancy_name}.json', 'w') as f:
         json.dump(sort_vacancies, f, indent=4, ensure_ascii=False)
     return vacancies_list

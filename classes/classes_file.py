@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import json
+import os
 
 
 class JobVacancyWork(ABC):
@@ -22,7 +23,7 @@ class JsonAppender(JobVacancyWork):
         При отсутствии - файл создается заново,
         при наличии - перезаписывается.
         """
-        with open(f'user_requests/{vacancy_name}.json', 'w') as file:
+        with os.path.join(f'user_requests/{vacancy_name}.json', 'w') as file:
             json.dump(vacancy, file, ensure_ascii=False, indent=4)
 
     def load_vacancy(self, value):
@@ -30,7 +31,7 @@ class JsonAppender(JobVacancyWork):
         Метод для открытия файла json
         """
         value = value.lower()
-        with open(f'{value}.json', 'r') as file:
+        with os.path.join(f'{value}.json', 'r') as file:
             a = json.load(file, indent=4)
             print(a)
 
