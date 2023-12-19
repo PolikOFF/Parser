@@ -68,7 +68,7 @@ def user_interaction():
         count_vacancies = int(input('Введите количество вакансий\n'))
         for vacancy in sorting_list[0:count_vacancies]:
             print(f'{vacancy}\n')
-            print("На этом мы прощаемся! Хорошего дня!")
+        print("На этом мы прощаемся! Хорошего дня!")
     elif answer == 'n':
         print('На этом мы прощаемся! Хорошего дня!')
         quit()
