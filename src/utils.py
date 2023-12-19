@@ -4,8 +4,11 @@ import shutil
 
 
 def delete_everything_in_folder(folder_path):
-    shutil.rmtree(folder_path)
-    os.mkdir(folder_path)
+    try:
+        shutil.rmtree(folder_path)
+        os.mkdir(folder_path)
+    except FileNotFoundError:
+        pass
 
 
 def get_vacancy_from_salary(vacancy_list, salary_from, salary_to):
