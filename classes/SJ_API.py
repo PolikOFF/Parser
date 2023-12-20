@@ -1,7 +1,9 @@
+import os
+
 from classes.abs_class_api import ApiWork
 import requests
 
-API_SJ = 'v3.r.112557166.6ccf64c3128111d522ffd74ec395f85805cdcfe9.a22bdca6107a065edd5f4a4704813f7058ef98eb'
+API_SJ = os.getenv('SuperJob_API_KEY')
 
 
 class SuperJob(ApiWork):
